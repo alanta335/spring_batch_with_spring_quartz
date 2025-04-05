@@ -25,9 +25,7 @@ services:
       - app-network
 
   spring-app:
-    build:
-      context: ..
-      dockerfile: docker/Dockerfile
+    image: my-spring-app:latest
     deploy:
       replicas: 3
     environment:
