@@ -1,11 +1,8 @@
 package com.example.demo.service.impl;
 
 import com.example.demo.service.BatchService;
-import java.util.HashMap;
-import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.Job;
-import org.springframework.batch.core.JobParameter;
 import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.JobParametersBuilder;
 import org.springframework.batch.core.launch.JobLauncher;

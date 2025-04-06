@@ -2,10 +2,8 @@ package com.example.demo.config;
 
 import static org.quartz.SimpleScheduleBuilder.simpleSchedule;
 
-import com.example.demo.scheduledjob.ScheduledJob;
+import com.example.demo.job.scheduler.BatchSchedulerServiceImpl;
 import org.quartz.*;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
 //@Configuration
@@ -14,7 +12,7 @@ public class JobConfig {
 //  @Bean
   public JobDetail jobDetail() {
     JobDataMap jobDataMap = new JobDataMap();
-    return JobBuilder.newJob(ScheduledJob.class)
+    return JobBuilder.newJob(BatchSchedulerServiceImpl.class)
         .usingJobData(jobDataMap)
         .storeDurably()
         .withIdentity("Qrtz_Job_Detail")

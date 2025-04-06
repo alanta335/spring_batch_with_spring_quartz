@@ -1,8 +1,6 @@
-package com.example.demo.scheduledjob;
+package com.example.demo.job.scheduler;
 
 import com.example.demo.service.BatchService;
-import java.io.Serial;
-import java.io.Serializable;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.quartz.Job;
@@ -12,10 +10,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class ScheduledJob implements Job, Serializable {
-
-  @Serial
-  private static final long serialVersionUID = -6273452861143339024L; // Add Serial Version UID
+public class BatchSchedulerServiceImpl implements Job {
 
   private final BatchService batchService;
 

@@ -11,14 +11,11 @@ import org.quartz.Trigger;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
-import org.springframework.util.CollectionUtils;
-
-import java.util.stream.Stream;
 
 @Service
 @Slf4j
 @RequiredArgsConstructor
-public class SchedulerService {
+public class SchedulerServiceImpl {
   private final BatchService batchService;
   private final Scheduler scheduler;
   private final JobConfig jobConfig;
