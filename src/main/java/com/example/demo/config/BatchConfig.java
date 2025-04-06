@@ -1,7 +1,7 @@
 package com.example.demo.config;
 
-import com.example.demo.job.batch.Step1Tasklet;
-import com.example.demo.listener.FileInjectionListener;
+import com.example.demo.job.batch.processor.BatchProcessor;
+import com.example.demo.job.batch.step.Step1Tasklet;
 import com.example.demo.model.domain.Vehicle;
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.Job;
@@ -19,7 +19,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 public class BatchConfig {
   private final Step1Tasklet step1Tasklet;
   private final FlatFileItemReader<Vehicle> csvFromS3Reader;
-  private final FileInjectionListener fileInjectionListener;
+  private final BatchProcessor batchProcessor;
 
   @Bean
   public Job taskletJob(
@@ -42,9 +42,9 @@ public class BatchConfig {
   public Step processCsvFileStep(
       JobRepository jobRepository, PlatformTransactionManager transactionManager) {
     return new StepBuilder("step2", jobRepository)
-        .chunk(3, transactionManager)
-        .listener(fileInjectionListener)
+        .<Vehicle, Vehicle>chunk(3, transactionManager)
         .reader(csvFromS3Reader)
+        .processor(batchProcessor.vehicleItemProcessor())
         .writer(items -> {})
         .build();
   }

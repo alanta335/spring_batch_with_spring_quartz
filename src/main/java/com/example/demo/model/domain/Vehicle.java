@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Vehicle {
   private String name;
-  private String year;
+  private int year;
   private String kmDriven;
   private String fuel;
   private String sellerType;
