@@ -1,6 +1,5 @@
 package com.example.demo.config;
 
-import com.example.demo.job.batch.processor.BatchProcessor;
 import com.example.demo.job.batch.step.Step1Tasklet;
 import com.example.demo.model.domain.Vehicle;
 import lombok.RequiredArgsConstructor;
@@ -9,6 +8,7 @@ import org.springframework.batch.core.Step;
 import org.springframework.batch.core.job.builder.JobBuilder;
 import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.batch.core.step.builder.StepBuilder;
+import org.springframework.batch.item.ItemProcessor;
 import org.springframework.batch.item.file.FlatFileItemReader;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,7 +19,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 public class BatchConfig {
   private final Step1Tasklet step1Tasklet;
   private final FlatFileItemReader<Vehicle> csvFromS3Reader;
-  private final BatchProcessor batchProcessor;
+  private final ItemProcessor<Vehicle, Vehicle> vehicleItemProcessor;
 
   @Bean
   public Job taskletJob(
@@ -44,7 +44,7 @@ public class BatchConfig {
     return new StepBuilder("step2", jobRepository)
         .<Vehicle, Vehicle>chunk(3, transactionManager)
         .reader(csvFromS3Reader)
-        .processor(batchProcessor.vehicleItemProcessor())
+        .processor(vehicleItemProcessor)
         .writer(items -> {})
         .build();
   }
