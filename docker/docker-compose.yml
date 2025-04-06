@@ -55,6 +55,8 @@ services:
       - DEFAULT_REGION=us-east-1
       - EDGE_PORT=4566
       - DATA_DIR=/tmp/localstack/data
+      - AWS_ACCESS_KEY_ID=test
+      - AWS_SECRET_ACCESS_KEY=test
     volumes:
       - ./localstack/init-s3.sh:/etc/localstack/init/ready.d/init-s3.sh
     networks:
