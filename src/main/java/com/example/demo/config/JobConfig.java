@@ -6,10 +6,9 @@ import com.example.demo.job.scheduler.BatchSchedulerServiceImpl;
 import org.quartz.*;
 import org.springframework.stereotype.Component;
 
-//@Configuration
 @Component
 public class JobConfig {
-//  @Bean
+
   public JobDetail jobDetail() {
     JobDataMap jobDataMap = new JobDataMap();
     return JobBuilder.newJob(BatchSchedulerServiceImpl.class)
@@ -20,7 +19,6 @@ public class JobConfig {
         .build();
   }
 
-//  @Bean
   public Trigger trigger() {
     return TriggerBuilder.newTrigger()
         .forJob(jobDetail())
