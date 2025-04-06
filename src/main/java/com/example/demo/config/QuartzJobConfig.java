@@ -7,7 +7,7 @@ import org.quartz.*;
 import org.springframework.stereotype.Component;
 
 @Component
-public class JobConfig {
+public class QuartzJobConfig {
 
   public JobDetail jobDetail() {
     JobDataMap jobDataMap = new JobDataMap();

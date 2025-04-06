@@ -1,6 +1,6 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.config.JobConfig;
+import com.example.demo.config.QuartzJobConfig;
 import com.example.demo.service.BatchService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 public class SchedulerServiceImpl {
   private final BatchService batchService;
   private final Scheduler scheduler;
-  private final JobConfig jobConfig;
+  private final QuartzJobConfig quartzJobConfig;
 
   //  @Scheduled(cron = "0/30 0/1 * 1/1 * ?")
   public void startScheduler() {
@@ -31,8 +31,8 @@ public class SchedulerServiceImpl {
   public void startQuartzScheduler() throws SchedulerException {
     log.info("Starting Quartz scheduler");
 
-    JobDetail jobDetail = jobConfig.jobDetail();
-    Trigger trigger = jobConfig.trigger();
+    JobDetail jobDetail = quartzJobConfig.jobDetail();
+    Trigger trigger = quartzJobConfig.trigger();
     if (!scheduler.checkExists(jobDetail.getKey())) {
       scheduler.scheduleJob(jobDetail, trigger);
     }

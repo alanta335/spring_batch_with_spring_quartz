@@ -1,6 +1,7 @@
 # 🚀 Spring Boot + PostgreSQL + NGINX + LocalStack (S3) — Full Stack Dev Environment
 
-Welcome to a fully containerized local development environment powered by **Docker Compose**. This setup emulates a realistic production stack, enabling you to develop, test, and debug your application seamlessly.
+Welcome to a fully containerized local development environment powered by **Docker Compose**. This setup emulates a
+realistic production stack, enabling you to develop, test, and debug your application seamlessly.
 
 ---
 
@@ -25,10 +26,10 @@ This project demonstrates a **production-like local environment** to supercharge
 
 ---
 
-Whether you're building a new feature, running integration tests, or experimenting with distributed architectures — this stack provides a powerful and isolated playground for your development needs.
+Whether you're building a new feature, running integration tests, or experimenting with distributed architectures — this
+stack provides a powerful and isolated playground for your development needs.
 
 > _"Build local. Ship global."_ 🌍
-
 
 ## 📦 Services
 
@@ -75,4 +76,10 @@ aws --endpoint-url=http://localhost:4566 s3 ls s3://mybucket/ --profile localsta
 
 ---
 
-`
+## This commad will copy all files from the current directory to the S3 bucket
+
+```bash
+
+aws --endpoint-url=http://localhost:4566 s3 cp . s3://mybucket/ --recursive --profile localstack
+
+```
