@@ -24,6 +24,9 @@ services:
     networks:
       - app-network
 
+  # mvn spring-boot:build-image -Dspring-boot.build-image.imageName=my-spring-app  -DskipTests
+  # Add this command to docker compose modify command before launch section, select mvn and add the command spring-boot:build-image -Dspring-boot.build-image.imageName=my-spring-app  -DskipTests
+
   spring-app:
     image: my-spring-app:latest
     deploy:
