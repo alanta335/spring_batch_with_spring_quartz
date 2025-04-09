@@ -1,85 +1,100 @@
-# 🚀 Spring Boot + PostgreSQL + NGINX + LocalStack (S3) — Full Stack Dev Environment
+# 🌟 Spring Batch + Quartz Scheduler + PostgreSQL + NGINX + LocalStack (S3) 🌟
 
-Welcome to a fully containerized local development environment powered by **Docker Compose**. This setup emulates a
-realistic production stack, enabling you to develop, test, and debug your application seamlessly.
-
----
-
-## 🌟 What's Inside
-
-- 🌐 **NGINX** – Acts as a reverse proxy to the Spring Boot application.
-- ☕ **Spring Boot** – Core application, deployed with **3 replicas** for load balancing.
-- 🐘 **PostgreSQL** – Relational database for persistent storage.
-- ☁️ **LocalStack (S3)** – Mocks AWS S3 services locally.
-- 🐳 **Docker Compose** – Orchestrates all services into a unified development setup.
+Welcome to the Spring Batch + Quartz Scheduler project! This repository demonstrates a production-ready, containerized
+development environment for building, scheduling, and running batch jobs with Spring Boot, PostgreSQL, and AWS S3 (via
+LocalStack). 🚀
 
 ---
 
-## 🧰 Why This Setup?
+## 🛠️ Tech Stack
 
-This project demonstrates a **production-like local environment** to supercharge development workflows:
-
-> 🔧 **Modular** – Each service runs in its own container for easy scaling and debugging.  
-> 🚀 **Realistic** – Simulates cloud behavior (S3) and microservice interaction.  
-> 🔁 **Replicable** – Consistent environment across all team members and CI pipelines.  
-> 📦 **Efficient** – Develop and test integrations without needing cloud resources.
-
----
-
-Whether you're building a new feature, running integration tests, or experimenting with distributed architectures — this
-stack provides a powerful and isolated playground for your development needs.
-
-> _"Build local. Ship global."_ 🌍
-
-## 📦 Services
-
-### 🔁 NGINX
-
-- Acts as a reverse proxy to the Spring Boot app
-- Listens on port `8080`
-- Config file: `./nginx/nginx.conf`
-
-### 🐘 PostgreSQL
-
-- Runs on port `5432`
-- Credentials:
-    - `user`: `user`
-    - `password`: `password`
-    - `database`: `mydatabase`
-
-### ☕ Spring Boot App
-
-- Built using:
-  ```bash
-  mvn spring-boot:build-image -Dspring-boot.build-image.imageName=my-spring-app -DskipTests
-  ```
-
-# 📦 LocalStack S3 Commands
-
-## 🔼 Upload a File to S3
-
-```bash
-aws --endpoint-url=http://localhost:4566 s3 cp yourfile.txt s3://mybucket/ --profile localstack
-```
-
-> Replace `yourfile.txt` with the actual path to your file.
+- **Spring Boot**: Core application framework
+- **Spring Batch**: For batch processing and job scheduling
+- **Quartz Scheduler**: Advanced job scheduling and management
+- **PostgreSQL**: Relational database for persistent storage
+- **NGINX**: Reverse proxy for the Spring Boot application
+- **LocalStack**: Local AWS S3 mock for testing cloud integrations
+- **Docker Compose**: Orchestrates all services into a unified environment
 
 ---
 
-## 📄 List Files in S3 Bucket
+## 🎯 Features
 
-```bash
-aws --endpoint-url=http://localhost:4566 s3 ls s3://mybucket/ --profile localstack
-```
-
-> This will display all files currently stored in `mybucket`.
+- **Batch Processing**: Efficiently process large datasets using Spring Batch
+- **Job Scheduling**: Schedule and manage jobs with Quartz Scheduler
+- **AWS S3 Integration**: Upload, list, and manage files in a mock S3 bucket
+- **Containerized Environment**: Fully Dockerized setup for local development
+- **Scalable Architecture**: Spring Boot app runs with 3 replicas for load balancing
 
 ---
 
-## This commad will copy all files from the current directory to the S3 bucket
+## 🚀 Getting Started
 
-```bash
+### Prerequisites
 
-aws --endpoint-url=http://localhost:4566 s3 cp . s3://mybucket/ --recursive --profile localstack
+Ensure you have the following installed:
+
+- Docker and Docker Compose
+- Java 23
+- Maven
+
+### Setup Instructions
+
+1. Clone the Repository:
+   ```bash
+   git clone https://github.com/your-username/your-repo-name.git
+   cd your-repo-name
+   ```
+
+2. Build the Spring Boot Application:
+   ```bash
+   ./mvnw spring-boot:build-image -Dspring-boot.build-image.imageName=my-spring-app -DskipTests
+   ```
+
+3. Start the Docker Environment:
+   ```bash
+   docker-compose up --build
+   ```
+
+### Access the Application
+
+- **Spring Boot App**: http://localhost:8080
+- **NGINX Proxy**: http://localhost:8080
+- **LocalStack S3**: http://localhost:4566
+
+---
+
+## 📂 Project Structure
 
 ```
+├── docker/
+│   ├── docker-compose.yml       # Docker Compose configuration
+│   ├── nginx/                   # NGINX configuration
+│   └── localstack/              # LocalStack initialization scripts
+├── src/
+│   ├── main/
+│   │   ├── java/                # Java source code
+│   │   └── resources/           # Application properties and resources
+├── pom.xml                      # Maven configuration
+├── README.md                    # Project documentation
+└── HELP.md                      # Additional help and references
+```
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Feel free to fork the repository and submit a pull request. For major changes, please open an
+issue first to discuss what you would like to change.
+
+---
+
+## 📧 Contact
+
+For any inquiries or support, please reach out to [alanta335@gmail.com](mailto:alanta335@gmail.com).
+
+---
+
+## 🌟 Happy Coding! 🌟
+
+---
