@@ -11,6 +11,7 @@ public class BatchProcessor {
   @Bean
   public ItemProcessor<Vehicle, Vehicle> vehicleItemProcessor() {
     return vehicle -> {
+      System.out.println(vehicle);
       return vehicle;
     };
   }

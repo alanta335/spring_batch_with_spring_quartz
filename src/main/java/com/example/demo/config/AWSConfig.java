@@ -15,10 +15,13 @@ public class AWSConfig {
   @Value("${aws.region}")
   private String region;
 
+  @Value("${aws.url}")
+  private String url;
+
   @Bean
   public S3Client s3Client() {
     return S3Client.builder()
-        .endpointOverride(URI.create("http://localhost:4566")) // LocalStack S3 endpoint
+        .endpointOverride(URI.create(url))
         .region(Region.of("us-east-1"))
         .credentialsProvider(
             StaticCredentialsProvider.create(AwsBasicCredentials.create("test", "test")))
